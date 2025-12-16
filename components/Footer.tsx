@@ -5,7 +5,7 @@ import LogoImg from "@/public/logo_v.1.1.png";
 
 const Footer = () => {
   return (
-    <footer className="w-full justify-between items-center">
+    <footer className=" w-full justify-between items-center overflow-hidden">
       <div className="px-16 py-20 bg-[#FFF7F1]">
         <div className="flex w-full justify-between items-center">
           <div className="space-y-5">

@@ -35,15 +35,13 @@ export default function RootLayout({
         />
       </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased w-screen h-screen`}
       >
-        <>
+        <section>
           <Navbar />
-          <main className="w-screen h-screen overflow-x-hidden">
-            {children}
-          </main>
+          <main className="w-full h-full overflow-x-hidden">{children}</main>
           <Footer />
-        </>
+        </section>
       </body>
     </html>
   );

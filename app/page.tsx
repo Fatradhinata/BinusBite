@@ -5,16 +5,23 @@ import IconImageRight from "@/public/icon-food-right.png";
 import AboutUsImg from "@/public/about-us-img.png";
 import ForkIcon from "@/public/fork-el.png";
 import Image from "next/image";
+import Link from "next/link";
 import CardComp from "@/components/CardComp";
 
 // DUMMY DATA
 import DummyData from "@/data/DummyData.json";
+import MakananDummyData from "@/data/MakananDummyData.json";
 
 // IMAGE
 import ImgTutor1 from "@/public/tutor/img-tutor-1.png";
 import ImgTutor2 from "@/public/tutor/img-tutor-2.png";
 import ImgTutor3 from "@/public/tutor/img-tutor-3.png";
-import Link from "next/link";
+import MakananImg from "@/public/makanan/rice-bowl.jpg";
+import MinumanImg from "@/public/minuman/minuman.jpg";
+import MakananContent from "@/public/makanan/makanan.jpg";
+
+// Function
+import { PaginateFunc } from "@/utils/paginateFunc";
 
 export default function Home() {
   const tutorData = [
@@ -40,6 +47,8 @@ export default function Home() {
       accentColor: "#FFADAB",
     },
   ];
+  const data = MakananDummyData;
+  const { paginateData } = PaginateFunc({ data, currentPage: 1, limit: 8 });
   return (
     <section className="w-full h-full ">
       <div className="w-full h-full relative">
@@ -195,17 +204,17 @@ export default function Home() {
           <div className="relative w-full h-full">
             <Image
               src={ForkIcon}
-              alt="fork-el"
+              alt="fork el left"
               width={300}
               height={450}
-              className="absolute -top-44 -left-[265px]"
+              className="absolute -top-44 -left-[200px]"
             ></Image>
             <Image
               src={ForkIcon}
-              alt="fork-el"
+              alt="fork el right"
               width={300}
               height={450}
-              className="absolute -top-44 -right-[265px] scale-x-[-1]"
+              className="absolute -top-44 -right-[200px] scale-x-[-1]"
             ></Image>
           </div>
           {/* TITLE */}
@@ -220,19 +229,53 @@ export default function Home() {
           </div>
 
           {/* CONTENT OF CATEGORY */}
-          <div className="mt-32">
+          <div className="mt-32 flex flex-col gap-24">
             {Object.entries(DummyData).map(([key, value]) => (
               <div key={key} className="flex flex-col gap-5">
-                <div className="flex justify-between">
+                <div className="px-16 flex justify-between items-center">
                   <h3 className="capitalize font-semibold">{key}</h3>
                   <Link href={"#"}>Lihat Lainnya</Link>
                 </div>
-                <div className="grid grid-cols-3 gap-6">
+                <div className="grid grid-cols-3 place-items-center gap-6">
                   {value.map((item) => (
-                    <div key={item.id} className="">
-                      <h5>{item.id}</h5>
-                      <h4>{item.title}</h4>
-                    </div>
+                    <CardComp
+                      color="none"
+                      key={item.id}
+                      radiusSize={16}
+                      isPadding={false}
+                      className="w-[400px] h-[400px] overflow-hidden group"
+                      isHover
+                    >
+                      <div className="w-full h-full bg-red-200 relative">
+                        {key === "makanan" ? (
+                          <Image
+                            src={MakananImg}
+                            alt="makanan img"
+                            className="w-full h-full object-cover"
+                          ></Image>
+                        ) : (
+                          <Image
+                            src={MinumanImg}
+                            alt="minuman img"
+                            className="w-full h-full object-cover"
+                          ></Image>
+                        )}
+                        <span className="text-2xl transition-colors group-hover:text-[#FFA825] text-white absolute bottom-3 left-4 font-semibold capitalize">
+                          {item.title}
+                        </span>
+                        <div className="p-2 bg-[rgba(255,255,255,0.3)] transition-colors group-hover:bg-[#fe99008e] absolute top-3 right-4 rounded-full">
+                          <svg
+                            xmlns="http://www.w3.org/2000/svg"
+                            height="24px"
+                            viewBox="0 -960 960 960"
+                            width="24px"
+                            fill="#e3e3e3"
+                          >
+                            <path d="m216-160-56-56 464-464H360v-80h400v400h-80v-264L216-160Z" />
+                          </svg>
+                        </div>
+                      </div>
+                    </CardComp>
                   ))}
                 </div>
               </div>
@@ -264,22 +307,48 @@ export default function Home() {
           </div>
 
           {/* CONTENT */}
-          <div className="grid grid-cols-4 place-items-center gap-5 mt-32">
-            {Array.from({ length: 8 }).map((_, key) => (
+          <div className="grid grid-cols-4 place-items-center gap-5 mt-32 relative">
+            {paginateData.map((item) => (
               <CardComp
                 color="#FFFFFF"
-                radiusSize={8}
-                className="shadow-[inset_0_0_20px_0_rgba(0,0,50,0.2)] w-2xs h-40"
-                key={key}
+                radiusSize={32}
+                className="shadow-[inset_0_0_20px_0_rgba(0,0,50,0.2)] w-[325px] overflow-hidden"
+                key={item.id}
               >
-                <div className="flex items-center justify-center">
-                  {key + 1}
+                <div className="flex flex-col">
+                  <div className="mt-10 flex w-full items-center justify-center">
+                    <Image
+                      src={MakananContent}
+                      alt=""
+                      width={200}
+                      height={200}
+                      className="object-cover rounded-full"
+                    ></Image>
+                  </div>
+                  <div className="">
+                    <span className="text-lg font-semibold">{item.name}</span>
+                    <p className="text-sm">{item.description}</p>
+                  </div>
+                  <div className="mt-4 flex w-full justify-between items-center">
+                    <h6 className="text-[#FFA825] font-bold">
+                      Rp. {item.price}
+                    </h6>
+                    <TrapComp style="floating" className="px-6 py-1.5">
+                      <button className="text-white font-medium">Order</button>
+                    </TrapComp>
+                  </div>
                 </div>
               </CardComp>
             ))}
+            {/* GRADIENT TRANSPARENT */}
+            <div className="w-full flex items-end justify-center h-96 bg-linear-to-t from-[rgb(255,255,255)] to-[rgba(255,255,255,0.3)] absolute left-0 bottom-0">
+              <TrapComp style="floating" className="max-w-max" padding>
+                <button className="text-xl font-bold text-white">
+                  Lihat Menu Lainnya!
+                </button>
+              </TrapComp>
+            </div>
           </div>
-          {/* GRADIENT TRANSPARENT */}
-          {/* <div className="w-full h-60 bg-lime-200 absolute left-0 bottom-0" /> */}
         </div>
       </div>
     </section>

@@ -16,15 +16,24 @@ const CardComp = ({
   color,
   radiusSize,
   className,
+  isPadding = true,
+  isHover = false,
 }: Readonly<{
   children: React.ReactNode;
   color: string;
   radiusSize: 0 | 4 | 8 | 12 | 16 | 32 | 100;
   className?: string;
+  isPadding?: boolean;
+  isHover?: boolean;
 }>) => {
   return (
     <div
-      className={cn("p-6", radiusMap[radiusSize], className)}
+      className={cn(
+        radiusMap[radiusSize],
+        { "p-6": isPadding },
+        { "transition-transform scale-100 hover:scale-[1.03]": isHover },
+        className
+      )}
       style={{ backgroundColor: color }}
     >
       {children}
