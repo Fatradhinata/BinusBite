@@ -1,0 +1,18 @@
+{
+  "makanan": [
+    { "id": 1, "title": "rice bowl" },
+    { "id": 2, "title": "masakan nusantara" },
+    { "id": 3, "title": "snack" },
+    { "id": 4, "title": "dessert" },
+    { "id": 5, "title": "mie dan pasta" },
+    { "id": 6, "title": "vegan" }
+  ],
+  "minuman": [
+    { "id": 1, "title": "kopi" },
+    { "id": 2, "title": "teh" },
+    { "id": 3, "title": "jus & smoothies" },
+    { "id": 4, "title": "milk based" },
+    { "id": 5, "title": "healty juice" },
+    { "id": 6, "title": "minuman tradisional" }
+  ]
+}
