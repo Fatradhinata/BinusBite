@@ -313,6 +313,7 @@ export default function Home() {
                 color="#FFFFFF"
                 radiusSize={32}
                 className="shadow-[inset_0_0_20px_0_rgba(0,0,50,0.2)] w-[325px] overflow-hidden"
+                isHover
                 key={item.id}
               >
                 <div className="flex flex-col">
@@ -342,7 +343,7 @@ export default function Home() {
             ))}
             {/* GRADIENT TRANSPARENT */}
             <div className="w-full flex items-end justify-center h-96 bg-linear-to-t from-[rgb(255,255,255)] to-[rgba(255,255,255,0.3)] absolute left-0 bottom-0">
-              <TrapComp style="floating" className="max-w-max" padding>
+              <TrapComp style="floating" className="max-w-max px-8 py-3">
                 <button className="text-xl font-bold text-white">
                   Lihat Menu Lainnya!
                 </button>
