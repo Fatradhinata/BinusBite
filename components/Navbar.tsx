@@ -3,6 +3,7 @@ import React, { useEffect, useState } from "react";
 import LogoBinBite from "@/public/logo_v.1.1.png";
 import Image from "next/image";
 import TrapComp from "./TrapComp";
+import Link from "next/link";
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -37,16 +38,16 @@ const Navbar = () => {
         <ul className="flex space-x-6">
           <li>
             <h6>
-              <a href="#" className="hover:text-blue-500">
+              <Link href="/" className="hover:text-blue-500">
                 Home
-              </a>
+              </Link>
             </h6>
           </li>
           <li>
             <h6>
-              <a href="#" className="hover:text-blue-500">
+              <Link href="/bite-me" className="hover:text-blue-500">
                 Bite Me!
-              </a>
+              </Link>
             </h6>
           </li>
           <li>
