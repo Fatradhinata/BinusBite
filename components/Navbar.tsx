@@ -24,7 +24,7 @@ const Navbar = () => {
       }`}
     >
       <div className=" mx-auto px-16 py-6 flex justify-between items-center">
-        <div className="flex gap-3 items-center">
+        <Link href={"/"} className="flex gap-3 items-center">
           <Image
             src={LogoBinBite}
             alt="logo binus bite"
@@ -34,7 +34,7 @@ const Navbar = () => {
           <h5 className="text-3xl font-bold uppercase text-[#FEA726]">
             BinusBite
           </h5>
-        </div>
+        </Link>
         <ul className="flex space-x-6">
           <li>
             <h6>

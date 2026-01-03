@@ -1,5 +1,6 @@
 import React from "react";
 import { cn } from "@/utils/cn";
+import Link from "next/link";
 
 const radiusMap: Record<number, string> = {
   0: "rounded-none",
@@ -16,6 +17,7 @@ const CardComp = ({
   color,
   radiusSize,
   className,
+  href,
   isPadding = true,
   isHover = false,
 }: Readonly<{
@@ -23,11 +25,13 @@ const CardComp = ({
   color: string;
   radiusSize: 0 | 4 | 8 | 12 | 16 | 32 | 100;
   className?: string;
+  href?: string;
   isPadding?: boolean;
   isHover?: boolean;
 }>) => {
   return (
-    <div
+    <Link
+      href={href ? href : ""}
       className={cn(
         radiusMap[radiusSize],
         { "p-6": isPadding },
@@ -37,7 +41,7 @@ const CardComp = ({
       style={{ backgroundColor: color }}
     >
       {children}
-    </div>
+    </Link>
   );
 };
 

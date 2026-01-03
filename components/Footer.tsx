@@ -17,7 +17,8 @@ const Footer = () => {
               atau kegiatan.
             </p>
           </div>
-          <div className="w-full flex justify-end">k
+          <div className="w-full flex justify-end">
+            k
             <div className="w-1/2 grid grid-cols-5">
               {/* home */}
               <div>
@@ -48,13 +49,13 @@ const Footer = () => {
                 <span className="text-lg font-semibold text-[#FFA825]">
                   Follow Us
                 </span>
-                <div className="flex flex-col justify-center items-center">
+                <div className="h-full flex flex-col justify-evenly items-center">
                   {/* TWITTER */}
-                  <FaXTwitter width={24} height={24} />
+                  <FaXTwitter className="w-6 h-6" />
                   {/* INSTAGRAM */}
-                  <FaInstagram width={24} height={24} />
+                  <FaInstagram className="w-6 h-6" />
                   {/* FACEBOOK */}
-                  <FaFacebook width={24} height={24} />
+                  <FaFacebook className="w-6 h-6" />
                 </div>
               </div>
             </div>

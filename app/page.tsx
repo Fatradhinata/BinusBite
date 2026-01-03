@@ -10,7 +10,7 @@ import CardComp from "@/components/CardComp";
 
 // DUMMY DATA
 import DummyData from "@/data/DummyData.json";
-import MakananDummyData from "@/data/MakananDummyData.json";
+import MenuData from "@/data/MenuData.json";
 
 // IMAGE
 import ImgTutor1 from "@/public/tutor/img-tutor-1.png";
@@ -22,6 +22,7 @@ import MakananContent from "@/public/makanan/makanan.jpg";
 
 // Function
 import { PaginateFunc } from "@/utils/paginateFunc";
+import { rupiah } from "@/utils/currencyRupiah";
 
 export default function Home() {
   const tutorData = [
@@ -47,7 +48,7 @@ export default function Home() {
       accentColor: "#FFADAB",
     },
   ];
-  const data = MakananDummyData;
+  const data = MenuData;
   const { paginateData } = PaginateFunc({ data, currentPage: 1, limit: 8 });
   return (
     <section className="w-full h-full ">
@@ -127,7 +128,7 @@ export default function Home() {
         {/* TUTORIAL ORDER */}
         <div className="w-full px-16 py-20 mt-80">
           <div className="flex items-end justify-between">
-            <h2 className="max-w-1/3 font-bold bg-lime-100">
+            <h2 className="max-w-1/3 font-bold">
               Pesan <span className="text-[#FFA825]">Makanan</span> Favoritmu
               dalam 3 Langkah Mudah!
             </h2>
@@ -243,10 +244,10 @@ export default function Home() {
                       key={item.id}
                       radiusSize={16}
                       isPadding={false}
-                      className="w-[400px] h-[400px] overflow-hidden group"
+                      className="w-[400px] h-[400px] overflow-hidden group transition-all hover:drop-shadow-2xl/25 relative"
                       isHover
                     >
-                      <div className="w-full h-full bg-red-200 relative">
+                      <div className="w-full h-full bg-red-200 relative transition-shadow">
                         {key === "makanan" ? (
                           <Image
                             src={MakananImg}
@@ -260,7 +261,7 @@ export default function Home() {
                             className="w-full h-full object-cover"
                           ></Image>
                         )}
-                        <span className="text-2xl transition-colors group-hover:text-[#FFA825] text-white absolute bottom-3 left-4 font-semibold capitalize">
+                        <span className="text-2xl transition-all group-hover:text-[#fe9800] group-hover:font-bold text-white absolute bottom-3 left-4 font-semibold capitalize">
                           {item.title}
                         </span>
                         <div className="p-2 bg-[rgba(255,255,255,0.3)] transition-colors group-hover:bg-[#fe99008e] absolute top-3 right-4 rounded-full">
@@ -275,6 +276,7 @@ export default function Home() {
                           </svg>
                         </div>
                       </div>
+                      <div className="w-full py-10 transition translate-y-10 group-hover:translate-y-0 absolute bottom-0 bg-linear-to-t from-[rgba(255,255,255,0.4)] bg-[rgba(255,255,225,0.0)]" />
                     </CardComp>
                   ))}
                 </div>
@@ -324,7 +326,7 @@ export default function Home() {
                       width={200}
                       height={200}
                       className="object-cover rounded-full"
-                    ></Image>
+                    />
                   </div>
                   <div className="">
                     <span className="text-lg font-semibold">{item.name}</span>
@@ -332,7 +334,7 @@ export default function Home() {
                   </div>
                   <div className="mt-4 flex w-full justify-between items-center">
                     <h6 className="text-[#FFA825] font-bold">
-                      Rp. {item.price}
+                      {rupiah(item.price)}
                     </h6>
                     <TrapComp style="floating" className="px-6 py-1.5">
                       <button className="text-white font-medium">Order</button>
@@ -343,8 +345,12 @@ export default function Home() {
             ))}
             {/* GRADIENT TRANSPARENT */}
             <div className="w-full flex items-end justify-center h-96 bg-linear-to-t from-[rgb(255,255,255)] to-[rgba(255,255,255,0.3)] absolute left-0 bottom-0">
-              <TrapComp style="floating" className="max-w-max px-8 py-3">
-                <button className="text-xl font-bold text-white">
+              <TrapComp
+                style="floating"
+                className="max-w-max px-8 py-3 cursor-pointer"
+                href="/bite-me"
+              >
+                <button className="text-xl font-bold text-white cursor-pointer">
                   Lihat Menu Lainnya!
                 </button>
               </TrapComp>
